@@ -1,7 +1,7 @@
 vmCpuNum            = 2
 vmMemSize           = 4096
 vsphereCluster      = ""
-floppyInitPath      = "./Scripts_Unattended"
+floppyInitPath      = "./setup"
 OSVersion           = "2022"
 vsphereNetwork      = ""
 vSphereIsoPath      = ""
@@ -12,6 +12,6 @@ vsphereUser         = ""
 vsphereServer       = ""
 vsphereFolder       = ""
 vsphereDatastore    = ""
-vsphereDatacenter   = "BT"
+vsphereDatacenter   = "DC1"
 vmName              = ""
-CL                  = "BT-CL-TEST-HOS"
+CL                  = "ContentLib"
