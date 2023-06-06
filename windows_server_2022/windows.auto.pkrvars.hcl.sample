@@ -1,0 +1,17 @@
+vmCpuNum            = 2
+vmMemSize           = 4096
+vsphereCluster      = ""
+floppyInitPath      = "./Scripts_Unattended"
+OSVersion           = "2022"
+vsphereNetwork      = ""
+vSphereIsoPath      = ""
+vmPassword          = ""
+vmDiskSize          = ""
+vspherePassword     = ""
+vsphereUser         = ""
+vsphereServer       = ""
+vsphereFolder       = ""
+vsphereDatastore    = ""
+vsphereDatacenter   = "BT"
+vmName              = ""
+CL                  = "BT-CL-TEST-HOS"
