@@ -38,7 +38,9 @@ source "vsphere-iso" "WS2022" {
 
   // ISO Source et checksum (Get-FileHash)
   // Le path peut être soit local soit sur le vsphere dans un datastore
-  iso_paths            = ["${var.vSphereIsoPath}"] # "[Datastore] Dossier/fichier.iso"
+  // On ajoute l'iso des vmware tools pour pouvoir récupérer l'ip de la VM depuis vsphere
+  iso_paths            = ["${var.vSphereIsoPath}", "[] /vmimages/tools-isoimages/windows.iso"] # "[Datastore] Dossier/fichier.iso"
+ 
   iso_checksum = "md5:290B43B5A6FE9B52B561D34EB92E8003" # à modifier selon votre iso
   
   // Config sur vSphere
