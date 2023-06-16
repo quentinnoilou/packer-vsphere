@@ -101,7 +101,12 @@
                     <CommandLine>cmd.exe /c a:\winrmConfig.bat</CommandLine>
                     <Description>Activer WinRM (HTTP)</Description>
                     <Order>1</Order>
-                </SynchronousCommand>			
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>C:\Windows\SysWOW64\cmd.exe /c E:\setup64.exe /s /v "/qb REBOOT=R"</CommandLine>
+                    <Description>Installer les VMware Tools</Description>
+                    <Order>2</Order>
+                </SynchronousCommand>	
             </FirstLogonCommands>
         </component>
     </settings>
