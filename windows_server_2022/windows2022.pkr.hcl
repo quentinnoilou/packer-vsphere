@@ -1,3 +1,13 @@
+packer {
+  required_version = ">= 1.7.0"
+  required_plugins {
+    vmware = {
+      version = ">= 1.0.0"
+      source  = "github.com/hashicorp/vmware"
+    }
+  }
+}
+
 locals {
   build_by      = "Built by: HashiCorp Packer ${packer.version}"
   build_date    = formatdate("YYYY-MM-DD hh:mm ZZZ", timestamp())
