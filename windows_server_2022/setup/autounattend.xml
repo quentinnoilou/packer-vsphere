@@ -98,15 +98,21 @@
             </AutoLogon>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
+                    <Order>1</Order>
+                    <Description>Set Execution Policy 32 Bit</Description>
+                    <CommandLine>C:\Windows\SysWOW64\cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
+                    <RequiresUserInput>true</RequiresUserInput>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
                     <CommandLine>cmd.exe /c a:\winrmConfig.bat</CommandLine>
                     <Description>Activer WinRM (HTTP)</Description>
-                    <Order>1</Order>
+                    <Order>2</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>C:\Windows\SysWOW64\cmd.exe /c E:\setup64.exe /s /v "/qb REBOOT=R"</CommandLine>
                     <Description>Installer les VMware Tools</Description>
-                    <Order>2</Order>
-                </SynchronousCommand>	
+                    <Order>3</Order>
+                </SynchronousCommand>			
             </FirstLogonCommands>
         </component>
     </settings>
