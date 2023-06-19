@@ -104,15 +104,15 @@
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c a:\winrmConfig.bat</CommandLine>
-                    <Description>Activer WinRM (HTTP)</Description>
-                    <Order>2</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
                     <CommandLine>C:\Windows\SysWOW64\cmd.exe /c E:\setup64.exe /s /v "/qb REBOOT=R"</CommandLine>
                     <Description>Installer les VMware Tools</Description>
-                    <Order>3</Order>
+                    <Order>2</Order>
                 </SynchronousCommand>			
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>C:\Windows\SysWOW64\cmd.exe /c powershell -Command "a:\winrmConfig.ps1"</CommandLine>
+                    <Description>Activer WinRM (HTTP)</Description>
+                    <Order>3</Order>
+                </SynchronousCommand>
             </FirstLogonCommands>
         </component>
     </settings>
