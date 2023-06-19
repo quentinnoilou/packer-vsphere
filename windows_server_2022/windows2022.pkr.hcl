@@ -71,7 +71,7 @@ build {
 
   // Hardening de Windows
   provisioner "powershell" {
-    script = "${path.root}/setup/harden_windows.ps1"
+    script = "${path.root}/setup/install-powershell.ps1"
   } 
 
   // Initier un redémarrage de la machine
