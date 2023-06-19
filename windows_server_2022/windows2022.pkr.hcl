@@ -1,13 +1,3 @@
-packer {
-  required_version = ">= 1.7.0"
-  required_plugins {
-    vmware = {
-      version = ">= 1.0.0"
-      source  = "github.com/hashicorp/vmware"
-    }
-  }
-}
-
 locals {
   build_by      = "Built by: HashiCorp Packer ${packer.version}"
   build_date    = formatdate("YYYY-MM-DD hh:mm ZZZ", timestamp())
@@ -23,7 +13,6 @@ source "vsphere-iso" "WS2022" {
   // Config de la machine
   CPUs                 = "${var.vmCpuNum}"
   RAM                  = "${var.vmMemSize}"
-  cluster              = "${var.vsphereCluster}"
   disk_controller_type = ["lsilogic-sas"]
   firmware             = "bios"
   network_adapters {
@@ -38,17 +27,15 @@ source "vsphere-iso" "WS2022" {
 
   // ISO Source et checksum (Get-FileHash)
   // Le path peut être soit local soit sur le vsphere dans un datastore
-  // On ajoute l'iso des vmware tools pour pouvoir récupérer l'ip de la VM depuis vsphere
   iso_paths            = ["${var.vSphereIsoPath}", "[] /vmimages/tools-isoimages/windows.iso"] # "[Datastore] Dossier/fichier.iso"
- 
   iso_checksum = "md5:290B43B5A6FE9B52B561D34EB92E8003" # à modifier selon votre iso
   
   // Config sur vSphere
   datacenter           = "${var.vsphereDatacenter}"
   datastore            = "${var.vsphereDatastore}"
   folder               = "${var.vsphereFolder}"
-  # cluster             = "${var.vspherecluster}"
-  notes                 = "Version: v${local.build_version}\nBuilt on: ${local.build_date}\n${local.build_by}"
+  cluster              = "${var.vsphereCluster}"
+
   
   // Config de connexion à vSphere
   username       = "${var.vsphereUser}"
@@ -65,7 +52,7 @@ source "vsphere-iso" "WS2022" {
   winrm_username = "Administrateur"
   winrm_password = "${var.vmPassword}"
   winrm_insecure = true
-  winrm_timeout =  "30m"
+  # winrm_timeout =  "30m"
 
   // Config Bibliothèque de contenu
   content_library_destination {
@@ -82,14 +69,9 @@ source "vsphere-iso" "WS2022" {
 build {
   sources = ["source.vsphere-iso.WS2022"]
 
-  # // Installer PowerShell (dernière version disponible sur GitHub)
-  # provisioner "powershell" {
-  #   script = "${path.root}/setup/install-powershell.ps1"
-  # } 
-
-  // Installer VMware Tools
+  // Hardening de Windows
   provisioner "powershell" {
-    script = "${path.root}/setup/install-vmtools.ps1"
+    script = "${path.root}/setup/harden_windows.ps1"
   } 
 
   // Initier un redémarrage de la machine
