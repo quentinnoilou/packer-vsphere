@@ -25,7 +25,7 @@ variable "OSVersion" {
 
 variable "vsphereNetwork" {
   type    = string
-  default = ""
+  default = "VM Network"
 }
 
 variable "vSphereIsoPath" {
@@ -75,9 +75,9 @@ variable "vsphereDatacenter" {
 
 variable "vmName" {
   type    = string
-  default = ""
+  default = "WS2022"
 }
 variable "CL" {
   type    = string
-  default = ""
+  default = "Templates"
 }
